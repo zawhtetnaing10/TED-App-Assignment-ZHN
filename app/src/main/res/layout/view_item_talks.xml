@@ -40,9 +40,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="Traits of a Psychopath"
-                android:textStyle="bold"
                 android:textColor="@color/secondary_text"
-                android:textSize="@dimen/text_regular_3x" />
+                android:textSize="@dimen/text_regular_3x"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_time"
@@ -51,18 +51,17 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:text="13:27"
-
                 android:textColor="@color/secondary_text" />
 
             <ImageButton
-                android:id="@+id/imgbtn_context_menu"
+                android:id="@+id/imgbtn_context_menu_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/tv_time"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:background="@null"
-                android:src="@drawable/ic_context_menu" />
+                android:src="@drawable/ic_context_menu_large" />
         </RelativeLayout>
 
     </FrameLayout>

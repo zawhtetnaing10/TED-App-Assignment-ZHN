@@ -23,7 +23,7 @@ public class ListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setOverflowIcon(ContextCompat.getDrawable(this,R.drawable.ic_context_menu_large));
+        toolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.ic_context_menu_large));
 
         RecyclerView rvTedTalks = findViewById(R.id.rv_ted_talks);
         TalksAdapter talksAdapter = new TalksAdapter();
@@ -36,7 +36,7 @@ public class ListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_list,menu);
+        getMenuInflater().inflate(R.menu.menu_list, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
