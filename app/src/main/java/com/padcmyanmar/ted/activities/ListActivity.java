@@ -1,5 +1,6 @@
-package com.padcmyanmar.ted;
+package com.padcmyanmar.ted.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,9 +13,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.padcmyanmar.ted.R;
 import com.padcmyanmar.ted.adapters.TalksAdapter;
+import com.padcmyanmar.ted.delegates.TalksDelegate;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements TalksDelegate {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,7 @@ public class ListActivity extends AppCompatActivity {
         toolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.ic_context_menu_large));
 
         RecyclerView rvTedTalks = findViewById(R.id.rv_ted_talks);
-        TalksAdapter talksAdapter = new TalksAdapter();
+        TalksAdapter talksAdapter = new TalksAdapter(this);
 
         rvTedTalks.setAdapter(talksAdapter);
         rvTedTalks.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
@@ -43,5 +46,11 @@ public class ListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onTapTalks() {
+        Intent intent = new Intent(getApplicationContext(), TalkDetailsActivity.class);
+        startActivity(intent);
     }
 }

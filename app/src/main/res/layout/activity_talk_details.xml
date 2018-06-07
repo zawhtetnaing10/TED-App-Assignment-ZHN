@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/talk_details_appbar_height"
+            android:elevation="@dimen/elevation_card"
+            app:contentScrim="@color/primary_light"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/iv_talk_details_backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ted_talks3" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_medium"
+                android:paddingLeft="@dimen/margin_medium_2"
+                android:paddingRight="@dimen/margin_medium_2"
+                android:paddingTop="@dimen/margin_medium_2">
+
+                <TextView
+                    android:id="@+id/tv_talk_details_speaker_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Corvo Attano"
+                    android:textColor="@color/text_black" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_talk_details_speaker_name"
+                    android:layout_marginTop="@dimen/margin_small_n"
+                    android:fontFamily="@font/open_sans_extrabold"
+                    android:text="Traits of a Psychopath"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_heading_1x" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_talk_details_title"
+                    android:padding="@dimen/margin_small"
+                    android:text="9:31" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_time_and_listen_separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_talk_details_title"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:layout_toRightOf="@id/tv_talk_details_time"
+                    android:paddingTop="@dimen/margin_small"
+                    android:text="|" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_listen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_talk_details_title"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:layout_toRightOf="@id/tv_talk_details_time_and_listen_separator"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_volume_up_gray_16dp"
+                    android:drawablePadding="@dimen/margin_small"
+                    android:foreground="@drawable/ripple"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_small"
+                    android:text="Listen" />
+
+                <ImageView
+                    android:id="@+id/btn_talk_details_play_list"
+                    style="@style/utility_button_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_talk_details_time"
+                    android:src="@drawable/ic_playlist_add_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/btn_talk_details_favourite"
+                    style="@style/utility_buttons_rest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/btn_talk_details_play_list"
+                    android:layout_toRightOf="@id/btn_talk_details_play_list"
+                    android:src="@drawable/ic_favorite_border_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/btn_talk_details_download"
+                    style="@style/utility_buttons_rest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/btn_talk_details_favourite"
+                    android:layout_toRightOf="@id/btn_talk_details_favourite"
+                    android:src="@drawable/ic_file_download_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/btn_talk_details_share"
+                    style="@style/utility_buttons_rest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/btn_talk_details_download"
+                    android:layout_toRightOf="@id/btn_talk_details_download"
+                    android:src="@drawable/ic_share_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btn_talk_details_play_list"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:lineSpacingMultiplier="1.0"
+                    android:text="The concept and subsequent reification of the diagnosis “psychopathy” has, to this author’s mind, hampered the understanding of criminality and violence... According to Hare, in many cases one need not even meet the patient. Just rummage through his records to determine what items seemed to fit. Nonsense. To this writer’s mind, psychopathy and its synonyms (e.g., sociopathy and antisocial personality) are lazy diagnoses. Over the years the authors’ team has seen scores of offenders who, prior to evaluation by the authors, were dismissed as psychopaths or the like. Detailed, comprehensive psychiatric, neurological, and neuropsychological evaluations have uncovered a multitude of signs, symptoms, and behaviors indicative of such disorders as bipolar mood disorder also intermittent."
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_time_and_place_filmed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_talk_details_description"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:text="TEDxPuget Sound,Filmed Sep 2011"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:textStyle="bold|italic" />
+
+                <View
+                    android:id="@+id/v_talk_details_divider_support_start"
+                    style="@style/divider"
+                    android:layout_below="@id/tv_talk_details_time_and_place_filmed" />
+
+                <TextView
+                    android:id="@+id/tv_support_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/v_talk_details_divider_support_start"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:gravity="center"
+                    android:text="TED talks are free thanks to support from"
+                    android:textSize="@dimen/text_small"
+                    android:textStyle="italic" />
+
+                <ImageView
+                    android:id="@+id/btn_support"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/support_button_height"
+                    android:layout_below="@id/tv_support_intro"
+                    android:layout_marginBottom="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:background="@color/divider"
+                    android:scaleType="centerCrop" />
+
+                <View
+                    android:id="@+id/v_talk_details_divider_support_end"
+                    style="@style/divider"
+                    android:layout_below="@id/btn_support" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_speaker_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/v_talk_details_divider_support_end"
+                    android:layout_marginTop="@dimen/margin_medium_3"
+                    android:text="About the speaker"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_regular_3x" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_profile"
+                    android:layout_width="@dimen/circle_profile_width"
+                    android:layout_height="@dimen/circle_profile_height"
+                    android:layout_below="@id/tv_talk_details_speaker_intro"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:src="@drawable/frank_underwood_profile" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_speaker_bio_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/civ_profile"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:layout_toRightOf="@id/civ_profile"
+                    android:fontFamily="@font/open_sans_extrabold"
+                    android:text="Corvo Attano"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_regular_2x" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_speaker_bio_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tv_talk_details_speaker_bio_name"
+                    android:layout_below="@id/tv_talk_details_speaker_bio_name"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="Congress Man" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_speaker_bio_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tv_talk_details_speaker_bio_name"
+                    android:layout_below="@id/tv_talk_details_speaker_bio_job"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="Corvo Attano was born into a lower class family in the Batista Mining District of Karnaca on the 25th day of the Month of Nets in 1798. Corvo used to live happily, often wandering through the more rural parts of the city until his father, a lumber worker, was tragically killed in a workplace accident."
+                    android:textColor="@color/text_black" />
+
+                <View
+                    android:id="@+id/v_talk_details_divider_speaker_bio_end"
+                    style="@style/divider"
+                    android:layout_below="@id/tv_talk_details_speaker_bio_description" />
+
+                <TextView
+                    android:id="@+id/tv_talk_details_watch_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/v_talk_details_divider_speaker_bio_end"
+                    android:layout_marginTop="@dimen/margin_medium_3"
+                    android:text="Watch Next"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_regular_3x" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_talk_details_watch_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_talk_details_watch_next"
+                    android:layout_marginTop="@dimen/margin_small" />
+
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_medium_2"
+        android:src="@drawable/ic_play_arrow_white_24dp"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|right" />
+
+
+</android.support.design.widget.CoordinatorLayout>

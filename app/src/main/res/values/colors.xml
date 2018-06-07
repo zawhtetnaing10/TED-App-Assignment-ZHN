@@ -2,10 +2,15 @@
 <resources>
         <color name="primary">#FFFFFF</color>
         <color name="primary_dark">#D32F2F</color>
-        <color name="primary_light">#BDBDBD</color>
-        <color name="accent">#D32F2F</color>
+        <color name="primary_light">#FF2E09</color>
+        <color name="accent">#FF2E09</color>
         <color name="primary_text">#D32F2F</color>
         <color name="secondary_text">#FFFFFF</color>
         <color name="icons">#FFFFFF</color>
         <color name="divider">#BDBDBD</color>
+
+        <color name="fab_white">#FFFFFF</color>
+        <color name="text_black">#000000</color>
+        <color name="text_gray">#BDBDBD</color>
+        <color name="ripple_gray">#BDBDBD</color>
 </resources>

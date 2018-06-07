@@ -30,4 +30,7 @@ dependencies {
 
     //Card View
     implementation 'com.android.support:cardview-v7:26.1.0'
+    //Circle Image View
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
 }

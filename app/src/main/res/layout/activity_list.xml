@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.padcmyanmar.ted.ListActivity">
+    tools:context="com.padcmyanmar.ted.activities.ListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/margin_medium"
-        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium_2"
         app:srcCompat="@drawable/ic_search_white" />
 
 </android.support.design.widget.CoordinatorLayout>

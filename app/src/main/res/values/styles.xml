@@ -17,4 +17,20 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="utility_button_left">
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">@drawable/ripple</item>
+        <item name="android:padding">@dimen/margin_small</item>
+    </style>
+
+    <style name="utility_buttons_rest" parent="utility_button_left">
+        <item name="android:layout_marginLeft">@dimen/margin_medium</item>
+    </style>
+
+    <style name="divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+
 </resources>

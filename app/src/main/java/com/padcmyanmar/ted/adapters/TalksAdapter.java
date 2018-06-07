@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.padcmyanmar.ted.R;
+import com.padcmyanmar.ted.delegates.TalksDelegate;
 import com.padcmyanmar.ted.viewholders.TalksViewHolder;
 
 /**
@@ -13,11 +14,18 @@ import com.padcmyanmar.ted.viewholders.TalksViewHolder;
  */
 
 public class TalksAdapter extends RecyclerView.Adapter {
+
+    private TalksDelegate mTalksDelegate;
+
+    public TalksAdapter(TalksDelegate talksDelegate) {
+        mTalksDelegate = talksDelegate;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater= LayoutInflater.from(parent.getContext());
-        View view=layoutInflater.inflate(R.layout.view_item_talks,parent,false);
-        return new TalksViewHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.view_holder_talks, parent, false);
+        return new TalksViewHolder(view, mTalksDelegate);
     }
 
     @Override
