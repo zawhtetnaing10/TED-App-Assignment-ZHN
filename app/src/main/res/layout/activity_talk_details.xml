@@ -182,6 +182,7 @@
                     android:id="@+id/btn_support"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/support_button_height"
+                    android:src="@drawable/ad_horizontal"
                     android:layout_below="@id/tv_support_intro"
                     android:layout_marginBottom="@dimen/margin_medium_2"
                     android:layout_marginTop="@dimen/margin_medium"
