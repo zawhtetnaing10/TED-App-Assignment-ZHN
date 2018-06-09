@@ -12,12 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.BaseAdapter;
 
 import com.padcmyanmar.ted.R;
 import com.padcmyanmar.ted.adapters.TalksAdapter;
 import com.padcmyanmar.ted.delegates.TalksDelegate;
 
-public class ListActivity extends AppCompatActivity implements TalksDelegate {
+public class ListActivity extends BaseActivity implements TalksDelegate {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

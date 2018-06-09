@@ -17,7 +17,7 @@ import com.padcmyanmar.ted.adapters.WatchNextAdapter;
  * Created by User on 6/6/2018.
  */
 
-public class TalkDetailsActivity extends AppCompatActivity {
+public class TalkDetailsActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
