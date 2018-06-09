@@ -9,9 +9,6 @@ import com.padcmyanmar.ted.R;
 import com.padcmyanmar.ted.delegates.TalksDelegate;
 import com.padcmyanmar.ted.viewholders.TalksViewHolder;
 
-/**
- * Created by User on 6/2/2018.
- */
 
 public class TalksAdapter extends RecyclerView.Adapter {
 

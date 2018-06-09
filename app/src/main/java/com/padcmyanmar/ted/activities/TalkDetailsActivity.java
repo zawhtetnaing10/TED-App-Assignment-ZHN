@@ -2,9 +2,7 @@ package com.padcmyanmar.ted.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,9 +11,6 @@ import android.view.Menu;
 import com.padcmyanmar.ted.R;
 import com.padcmyanmar.ted.adapters.WatchNextAdapter;
 
-/**
- * Created by User on 6/6/2018.
- */
 
 public class TalkDetailsActivity extends BaseActivity {
     @Override
@@ -26,7 +21,10 @@ public class TalkDetailsActivity extends BaseActivity {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
 
         RecyclerView rvTalkDetailsWatchNext = findViewById(R.id.rv_talk_details_watch_next);
         WatchNextAdapter adapter = new WatchNextAdapter();

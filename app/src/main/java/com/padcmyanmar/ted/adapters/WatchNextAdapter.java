@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import com.padcmyanmar.ted.R;
 import com.padcmyanmar.ted.viewholders.WatchNextViewHolder;
 
-/**
- * Created by User on 6/7/2018.
- */
 
 public class WatchNextAdapter extends RecyclerView.Adapter {
     @Override
