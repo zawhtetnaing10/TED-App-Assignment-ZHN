@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.padcmyanmar.ted.R;
 import com.padcmyanmar.ted.adapters.TalksAdapter;
+import com.padcmyanmar.ted.data.models.TalksModel;
 import com.padcmyanmar.ted.delegates.TalksDelegate;
 
 public class TalkListActivity extends BaseActivity implements TalksDelegate {
@@ -31,6 +32,8 @@ public class TalkListActivity extends BaseActivity implements TalksDelegate {
         rvTedTalks.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 LinearLayoutManager.VERTICAL,
                 false));
+
+        TalksModel.getObjInstance().loadTalksList();
     }
 
     @Override
