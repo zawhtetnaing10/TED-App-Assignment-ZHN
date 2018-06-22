@@ -4,10 +4,15 @@ package com.padcmyanmar.ted.network;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.padcmyanmar.ted.events.APIErrorEvent;
+import com.padcmyanmar.ted.events.SuccessGetTalksEvent;
+import com.padcmyanmar.ted.network.responses.GetTalksResponse;
 import com.padcmyanmar.ted.utils.TEDTalksConstants;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -107,8 +112,19 @@ public class HttpUrlConnectionDataAgentImpl implements TalksDataAgent {
             }
 
             @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
+            protected void onPostExecute(String responseString) {
+                super.onPostExecute(responseString);
+                Gson gson = new Gson();
+                GetTalksResponse talksResponse = gson.fromJson(responseString, GetTalksResponse.class);
+
+                if(talksResponse.isResponseOk()){
+                    SuccessGetTalksEvent event = new SuccessGetTalksEvent(talksResponse.getTalks());
+                    EventBus.getDefault().post(event);
+                }else{
+                    APIErrorEvent event = new APIErrorEvent(talksResponse.getMessage());
+                    EventBus.getDefault().post(event);
+                }
+
             }
         }.execute();
     }

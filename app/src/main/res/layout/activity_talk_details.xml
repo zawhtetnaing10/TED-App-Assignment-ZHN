@@ -73,7 +73,7 @@
                     android:textSize="@dimen/text_heading_1x" />
 
                 <TextView
-                    android:id="@+id/tv_talk_details_time"
+                    android:id="@+id/tv_talk_details_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_talk_details_title"
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_talk_details_title"
                     android:layout_marginLeft="@dimen/margin_medium"
-                    android:layout_toRightOf="@id/tv_talk_details_time"
+                    android:layout_toRightOf="@id/tv_talk_details_duration"
                     android:paddingTop="@dimen/margin_small"
                     android:text="|" />
 
@@ -110,7 +110,7 @@
                     style="@style/utility_button_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_talk_details_time"
+                    android:layout_below="@id/tv_talk_details_duration"
                     android:src="@drawable/ic_playlist_add_black_24dp" />
 
                 <ImageView

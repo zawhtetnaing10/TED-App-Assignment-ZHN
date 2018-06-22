@@ -28,8 +28,9 @@
                     android:id="@+id/tv_toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_medium"
                     android:layout_marginRight="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:fontFamily="@font/open_sans_extrabold"
                     android:text="TED"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_heading_1x"
@@ -52,8 +53,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/margin_small"
         android:paddingLeft="@dimen/margin_medium"
         android:paddingRight="@dimen/margin_medium"
+        android:paddingTop="@dimen/margin_small"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.v7.widget.RecyclerView

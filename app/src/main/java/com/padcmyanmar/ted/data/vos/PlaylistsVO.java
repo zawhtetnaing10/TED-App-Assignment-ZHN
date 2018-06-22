@@ -1,18 +1,31 @@
 package com.padcmyanmar.ted.data.vos;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 
 public class PlaylistsVO {
-    private int playListId;
+    @SerializedName("playlist_id")
+    private int playlistId;
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("imageUrl")
     private String imageUrl;
+
+    @SerializedName("totalTalks")
     private int totalTalks;
+
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("talksInPlaylist")
     private List<TalksVO> talksInPlaylist;
 
-    public int getPlayListId() {
-        return playListId;
+    public int getPlaylistId() {
+        return playlistId;
     }
 
     public String getTitle() {

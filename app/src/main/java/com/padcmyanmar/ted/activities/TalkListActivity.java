@@ -12,9 +12,19 @@ import android.view.MenuItem;
 import com.padcmyanmar.ted.R;
 import com.padcmyanmar.ted.adapters.TalksAdapter;
 import com.padcmyanmar.ted.data.models.TalksModel;
+import com.padcmyanmar.ted.data.vos.TalksVO;
 import com.padcmyanmar.ted.delegates.TalksDelegate;
+import com.padcmyanmar.ted.events.SuccessGetTalksEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
 
 public class TalkListActivity extends BaseActivity implements TalksDelegate {
+
+    private TalksAdapter talksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +36,7 @@ public class TalkListActivity extends BaseActivity implements TalksDelegate {
         toolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.ic_context_menu_large));
 
         RecyclerView rvTedTalks = findViewById(R.id.rv_ted_talks);
-        TalksAdapter talksAdapter = new TalksAdapter(this);
+        talksAdapter = new TalksAdapter(this);
 
         rvTedTalks.setAdapter(talksAdapter);
         rvTedTalks.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
@@ -48,8 +58,26 @@ public class TalkListActivity extends BaseActivity implements TalksDelegate {
     }
 
     @Override
-    public void onTapTalks() {
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onTapTalks(TalksVO talks) {
         Intent intent = new Intent(getApplicationContext(), TalkDetailsActivity.class);
+        intent.putExtra("talksId",talks.getTalkId());
         startActivity(intent);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSuccessGetTalks(SuccessGetTalksEvent event){
+            talksAdapter.setmTalksList(event.getTalks());
     }
 }

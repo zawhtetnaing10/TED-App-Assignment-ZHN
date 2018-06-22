@@ -1,13 +1,24 @@
 package com.padcmyanmar.ted.data.vos;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 
 public class PodcastsVO {
+    @SerializedName("podcast_id")
     private int podcastId;
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("imageUrl")
     private String imageUrl;
+
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("segments")
     private List<SegmentVO> segments;
 
     public int getPodcastId() {
