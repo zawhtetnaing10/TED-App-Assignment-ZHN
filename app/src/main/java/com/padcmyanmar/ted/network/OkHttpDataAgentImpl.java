@@ -1,7 +1,6 @@
 package com.padcmyanmar.ted.network;
 
 import android.os.AsyncTask;
-import android.os.Parcelable;
 
 import com.google.gson.Gson;
 import com.padcmyanmar.ted.events.APIErrorEvent;
@@ -19,11 +18,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
-/**
- * Created by User on 6/21/2018.
- */
+
 
 public class OkHttpDataAgentImpl implements TalksDataAgent {
 
@@ -81,10 +77,10 @@ public class OkHttpDataAgentImpl implements TalksDataAgent {
                 Gson gson = new Gson();
                 GetTalksResponse talksResponse = gson.fromJson(responseString, GetTalksResponse.class);
 
-                if(talksResponse.isResponseOk()){
+                if (talksResponse.isResponseOk()) {
                     SuccessGetTalksEvent event = new SuccessGetTalksEvent(talksResponse.getTalks());
                     EventBus.getDefault().post(event);
-                }else{
+                } else {
                     APIErrorEvent event = new APIErrorEvent(talksResponse.getMessage());
                     EventBus.getDefault().post(event);
                 }
