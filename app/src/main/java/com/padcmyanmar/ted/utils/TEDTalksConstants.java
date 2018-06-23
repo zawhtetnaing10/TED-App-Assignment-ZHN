@@ -6,4 +6,6 @@ public class TEDTalksConstants {
     public static final String GET_TED_TALKS = "getTedTalks.php";
     public static final String PARAM_ACCESS_TOKEN = "access_token";
     public static final String PARAM_PAGE = "page";
+
+    public static final String TALK_ID = "talkId";
 }

@@ -17,6 +17,7 @@ import com.padcmyanmar.ted.adapters.WatchNextAdapter;
 import com.padcmyanmar.ted.data.models.TalksModel;
 import com.padcmyanmar.ted.data.vos.TalksVO;
 import com.padcmyanmar.ted.delegates.TalksDelegate;
+import com.padcmyanmar.ted.utils.TEDTalksConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
         setContentView(R.layout.activity_talk_details);
         ButterKnife.bind(this);
 
-        int talksId = getIntent().getIntExtra("talksId", 0);
+        int talksId = getIntent().getIntExtra(TEDTalksConstants.TALK_ID, 0);
         TalksVO talks = TalksModel.getObjInstance().getTalksById(talksId);
         bindData(talks);
 
@@ -69,9 +70,9 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
         WatchNextAdapter adapter = new WatchNextAdapter(this);
 
         Map<Integer, TalksVO> talksMap = TalksModel.getObjInstance().getAllTalks();
-        List<TalksVO> watchNextTalks = new ArrayList<>() ;
-        for(Map.Entry<Integer,TalksVO> entry : talksMap.entrySet()){
-            if(entry.getKey() != talksId){
+        List<TalksVO> watchNextTalks = new ArrayList<>();
+        for (Map.Entry<Integer, TalksVO> entry : talksMap.entrySet()) {
+            if (entry.getKey() != talksId) {
                 watchNextTalks.add(entry.getValue());
             }
         }
@@ -89,7 +90,7 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void bindData(TalksVO talks){
+    private void bindData(TalksVO talks) {
         Glide.with(this).load(talks.getImageUrl()).into(ivTalksDetailsBackdrop);
         tvTalksDetailsSpeakerName.setText(talks.getSpeaker().getName());
         tvTalkDetailsTitle.setText(talks.getTitle());
@@ -100,8 +101,8 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
 
     @Override
     public void onTapTalks(TalksVO talks) {
-        Intent intent = new Intent(getApplicationContext(),this.getClass());
-        intent.putExtra("talksId",talks.getTalkId());
+        Intent intent = new Intent(getApplicationContext(), this.getClass());
+        intent.putExtra(TEDTalksConstants.TALK_ID, talks.getTalkId());
         startActivity(intent);
     }
 }
