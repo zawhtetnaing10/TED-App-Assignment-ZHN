@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +50,8 @@ public class TalksModel {
         return mTalksMap.get(id);
     }
 
-    public Map<Integer, TalksVO> getAllTalks() {
-        return mTalksMap;
+    public List<TalksVO> getAllTalks() {
+        return new ArrayList<>(mTalksMap.values());
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

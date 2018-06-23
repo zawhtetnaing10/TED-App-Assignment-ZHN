@@ -23,7 +23,15 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class TalkListActivity extends BaseActivity implements TalksDelegate {
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.rv_ted_talks)
+    RecyclerView rvTedTalks;
 
     private TalksAdapter talksAdapter;
 
@@ -31,12 +39,10 @@ public class TalkListActivity extends BaseActivity implements TalksDelegate {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talk_list);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
-
         toolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.ic_context_menu_large));
-
-        RecyclerView rvTedTalks = findViewById(R.id.rv_ted_talks);
         talksAdapter = new TalksAdapter(this);
 
         rvTedTalks.setAdapter(talksAdapter);

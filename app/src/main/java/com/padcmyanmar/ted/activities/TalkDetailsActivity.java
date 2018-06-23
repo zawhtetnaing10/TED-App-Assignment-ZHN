@@ -19,9 +19,7 @@ import com.padcmyanmar.ted.data.vos.TalksVO;
 import com.padcmyanmar.ted.delegates.TalksDelegate;
 import com.padcmyanmar.ted.utils.TEDTalksConstants;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,7 +43,16 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
     TextView tvTalkDetailsDescription;
 
     @BindView(R.id.tv_talk_details_speaker_bio_name)
-    TextView tvTalkDetailsSpekaerBioName;
+    TextView tvTalkDetailsSpeakerBioName;
+
+    @BindView(R.id.rv_talk_details_watch_next)
+    RecyclerView rvTalkDetailsWatchNext;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    private List<TalksVO> watchNextTalks;
+    private WatchNextAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,11 +60,6 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
         setContentView(R.layout.activity_talk_details);
         ButterKnife.bind(this);
 
-        int talksId = getIntent().getIntExtra(TEDTalksConstants.TALK_ID, 0);
-        TalksVO talks = TalksModel.getObjInstance().getTalksById(talksId);
-        bindData(talks);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -65,23 +67,12 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        int talksId = getIntent().getIntExtra(TEDTalksConstants.TALK_ID, 0);
+        TalksVO talks = TalksModel.getObjInstance().getTalksById(talksId);
 
-        RecyclerView rvTalkDetailsWatchNext = findViewById(R.id.rv_talk_details_watch_next);
-        WatchNextAdapter adapter = new WatchNextAdapter(this);
+        watchNextTalks = TalksModel.getObjInstance().getAllTalks();
 
-        Map<Integer, TalksVO> talksMap = TalksModel.getObjInstance().getAllTalks();
-        List<TalksVO> watchNextTalks = new ArrayList<>();
-        for (Map.Entry<Integer, TalksVO> entry : talksMap.entrySet()) {
-            if (entry.getKey() != talksId) {
-                watchNextTalks.add(entry.getValue());
-            }
-        }
-        adapter.setTalks(watchNextTalks);
-
-        rvTalkDetailsWatchNext.setAdapter(adapter);
-        rvTalkDetailsWatchNext.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
-                LinearLayoutManager.VERTICAL,
-                false));
+        bindData(talks);
     }
 
     @Override
@@ -96,7 +87,14 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
         tvTalkDetailsTitle.setText(talks.getTitle());
         tvTalkDetailsDuration.setText(talks.getMinutesAndSecondsString());
         tvTalkDetailsDescription.setText(talks.getDescription());
-        tvTalkDetailsSpekaerBioName.setText(talks.getSpeaker().getName());
+        tvTalkDetailsSpeakerBioName.setText(talks.getSpeaker().getName());
+
+        adapter = new WatchNextAdapter(this);
+        adapter.setTalks(watchNextTalks);
+        rvTalkDetailsWatchNext.setAdapter(adapter);
+        rvTalkDetailsWatchNext.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+                LinearLayoutManager.VERTICAL,
+                false));
     }
 
     @Override
