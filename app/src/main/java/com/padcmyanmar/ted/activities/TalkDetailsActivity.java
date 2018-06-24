@@ -69,7 +69,6 @@ public class TalkDetailsActivity extends BaseActivity implements TalksDelegate {
 
         int talksId = getIntent().getIntExtra(TEDTalksConstants.TALK_ID, 0);
         TalksVO talks = TalksModel.getObjInstance().getTalksById(talksId);
-
         watchNextTalks = TalksModel.getObjInstance().getAllTalks();
 
         bindData(talks);

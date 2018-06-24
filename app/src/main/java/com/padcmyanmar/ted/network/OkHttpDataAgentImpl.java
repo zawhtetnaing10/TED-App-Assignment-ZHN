@@ -20,11 +20,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-
 public class OkHttpDataAgentImpl implements TalksDataAgent {
 
     private static OkHttpDataAgentImpl objInstance;
-    private OkHttpClient mHttpClient;
+    private static OkHttpClient mHttpClient;
 
 
     private OkHttpDataAgentImpl() {
@@ -45,46 +44,59 @@ public class OkHttpDataAgentImpl implements TalksDataAgent {
 
     @Override
     public void loadTalksList(final int page, final String accessToken) {
-        new AsyncTask<Void, Void, String>() {
-            @Override
-            protected String doInBackground(Void... voids) {
-                RequestBody formBody = new FormBody.Builder()
-                        .add(TEDTalksConstants.PARAM_ACCESS_TOKEN, accessToken)
-                        .add(TEDTalksConstants.PARAM_PAGE, String.valueOf(page))
-                        .build();
+        NetworkTask networkTask = new NetworkTask(accessToken , page);
+        networkTask.execute();
+    }
 
-                Request request = new Request.Builder()
-                        .url(TEDTalksConstants.API_BASE + TEDTalksConstants.GET_TED_TALKS)
-                        .post(formBody)
-                        .build();
+    private static class NetworkTask extends AsyncTask<Void, Void, String> {
+        private String mAccessToken;
+        private int mPage;
 
-                try {
-                    Response response = mHttpClient.newCall(request).execute();
-                    if (response != null) {
-                        String responseString = response.body().string();
-                        return responseString;
-                    }
+        public NetworkTask(String accessToken, int page) {
+            this.mAccessToken = accessToken;
+            this.mPage = page;
+        }
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+        @Override
+        protected String doInBackground(Void... voids) {
+            RequestBody formBody = new FormBody.Builder()
+                    .add(TEDTalksConstants.PARAM_ACCESS_TOKEN, mAccessToken)
+                    .add(TEDTalksConstants.PARAM_PAGE, String.valueOf(mPage))
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url(TEDTalksConstants.API_BASE + TEDTalksConstants.GET_TED_TALKS)
+                    .post(formBody)
+                    .build();
+
+            try {
+                Response response = mHttpClient.newCall(request).execute();
+                if (response != null) {
+                    String responseString = response.body().string();
+                    return responseString;
                 }
-                return null;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+
+        }
+
+        @Override
+        protected void onPostExecute(String responseString) {
+            super.onPostExecute(responseString);
+            Gson gson = new Gson();
+            GetTalksResponse talksResponse = gson.fromJson(responseString, GetTalksResponse.class);
+
+            if (talksResponse.isResponseOk()) {
+                SuccessGetTalksEvent event = new SuccessGetTalksEvent(talksResponse.getTalks());
+                EventBus.getDefault().post(event);
+            } else {
+                APIErrorEvent event = new APIErrorEvent(talksResponse.getMessage());
+                EventBus.getDefault().post(event);
             }
 
-            @Override
-            protected void onPostExecute(String responseString) {
-                super.onPostExecute(responseString);
-                Gson gson = new Gson();
-                GetTalksResponse talksResponse = gson.fromJson(responseString, GetTalksResponse.class);
-
-                if (talksResponse.isResponseOk()) {
-                    SuccessGetTalksEvent event = new SuccessGetTalksEvent(talksResponse.getTalks());
-                    EventBus.getDefault().post(event);
-                } else {
-                    APIErrorEvent event = new APIErrorEvent(talksResponse.getMessage());
-                    EventBus.getDefault().post(event);
-                }
-            }
-        }.execute();
+        }
     }
 }

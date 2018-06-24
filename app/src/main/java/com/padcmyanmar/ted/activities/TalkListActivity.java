@@ -27,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TalkListActivity extends BaseActivity implements TalksDelegate {
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
