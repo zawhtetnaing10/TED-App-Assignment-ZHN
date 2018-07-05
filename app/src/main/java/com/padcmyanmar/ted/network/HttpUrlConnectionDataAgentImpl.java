@@ -41,7 +41,6 @@ public class HttpUrlConnectionDataAgentImpl implements TalksDataAgent {
         return objInstance;
     }
 
-
     @Override
     public void loadTalksList(final int page, final String accessToken) {
 
@@ -49,7 +48,6 @@ public class HttpUrlConnectionDataAgentImpl implements TalksDataAgent {
         task.execute();
 
     }
-
 
     private static String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
